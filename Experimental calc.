@@ -1,0 +1,70 @@
+from tkinter import *
+
+root = Tk()
+root.title("rekenmachine")
+root.geometry("500x500")
+
+gekozen_bewerking = ""
+
+def kies_bewerking(teken):
+    global gekozen_bewerking
+    gekozen_bewerking = teken
+
+def bereken():
+    g1 = int(entry_getal1.get())
+    g2 = int(entry_getal2.get())
+
+    if gekozen_bewerking == "+":
+        uitkomst = g1 + g2
+    elif gekozen_bewerking == "-":
+        uitkomst = g1 - g2
+    elif gekozen_bewerking == "*":
+        uitkomst = g1 * g2
+    elif gekozen_bewerking == "/":
+        uitkomst = g1 / g2
+    else:
+        return
+
+    entry_resultaat.delete(0, END)
+    entry_resultaat.insert(0, uitkomst)
+
+def clear():
+    global gekozen_bewerking
+    gekozen_bewerking = ""
+    entry_getal1.delete(0, END)
+    entry_getal2.delete(0, END)
+    entry_resultaat.delete(0, END)
+
+titel = Label(root, text="rekenmachine", font=("Arial", 14))
+titel.pack(pady=10)
+
+frame = Frame(root)
+frame.pack(padx=15, pady=15)
+
+Label(frame, text="getal 1:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+entry_getal1 = Entry(frame)
+entry_getal1.grid(row=0, column=1, padx=5, pady=5)
+
+Label(frame, text="getal 2:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+entry_getal2 = Entry(frame)
+entry_getal2.grid(row=1, column=1, padx=5, pady=5)
+
+knoppen_frame = Frame(frame)
+knoppen_frame.grid(row=2, column=0, columnspan=2, pady=10)
+
+Button(knoppen_frame, text="+", width=4, command=lambda: kies_bewerking("+")).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text="-", width=4, command=lambda: kies_bewerking("-")).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text="*", width=4, command=lambda: kies_bewerking("*")).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text=":", width=4, command=lambda: kies_bewerking("/")).pack(side=LEFT, padx=4)
+
+actie_frame = Frame(frame)
+actie_frame.grid(row=3, column=0, columnspan=2, pady=5)
+
+Button(actie_frame, text="=", width=8, command=bereken).pack(side=LEFT, padx=4)
+Button(actie_frame, text="Clear", width=8, command=clear).pack(side=LEFT, padx=4)
+
+Label(frame, text="resultaat:").grid(row=4, column=0, padx=5, pady=5, sticky="e")
+entry_resultaat = Entry(frame)
+entry_resultaat.grid(row=4, column=1, padx=5, pady=5)
+
+root.mainloop()
