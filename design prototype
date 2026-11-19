@@ -1,0 +1,34 @@
+from tkinter import *
+
+root = Tk()
+root.title("rekenmachine")
+root.geometry("500x500")
+
+titel = Label(root, text="rekenmachine", font=("Arial", 14))
+titel.pack(pady=10)
+
+frame = Frame(root)
+frame.pack(padx=15, pady=15)
+
+Label(frame, text="getal 1:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+entry_getal1 = Entry(frame)
+entry_getal1.grid(row=0, column=1, padx=5, pady=5)
+
+Label(frame, text="getal 2:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+entry_getal2 = Entry(frame)
+entry_getal2.grid(row=1, column=1, padx=5, pady=5)
+
+
+knoppen_frame = Frame(frame)
+knoppen_frame.grid(row=2, column=0, columnspan=2, pady=10)
+
+Button(knoppen_frame, text="+", width=4, command=print).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text="-", width=4, command=print).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text="*", width=4, command=print).pack(side=LEFT, padx=4)
+Button(knoppen_frame, text=":", width=4, command=print).pack(side=LEFT, padx=4)
+
+Label(frame, text="resultaat").grid(row=3, column=0, padx=5, pady=5, sticky="e")
+entry_resultaat = Entry(frame)
+entry_resultaat.grid(row=3, column=1, padx=5, pady=5)
+
+root.mainloop()
